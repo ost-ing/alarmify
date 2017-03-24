@@ -1,3 +1,8 @@
+//
+//  Alarmify
+//  Licensed under the Mozilla Public License 2.0
+//
+
 @interface StatusItemView : NSView {
 @private
     NSImage *_image;

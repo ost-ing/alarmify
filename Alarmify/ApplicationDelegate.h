@@ -1,3 +1,8 @@
+//
+//  Alarmify
+//  Licensed under the Mozilla Public License 2.0
+//
+
 #import "MenubarController.h"
 #import "PanelController.h"
 #import "AboutController.h"

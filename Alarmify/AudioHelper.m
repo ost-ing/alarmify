@@ -1,5 +1,4 @@
 //
-//  AudioHelper.m
 //  Alarmify
 //  Licensed under the Mozilla Public License 2.0
 //
@@ -9,6 +8,9 @@
 
 @implementation AudioHelper
 
+/**
+ * Determine if the computer is using the internal or an external sound source
+ */
 + (BOOL) isUsingInternalOutputSystem
 {
     // Determine if the data-source is using the internal output system

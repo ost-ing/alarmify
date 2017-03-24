@@ -1,5 +1,4 @@
 //
-//  SpotifyAutoplayer.h
 //  Alarmify
 //  Licensed under the Mozilla Public License 2.0
 //
@@ -8,13 +7,8 @@
 
 @interface SpotifyAutoplayer : NSObject
 
-+ (SpotifyAutoplayer *) sharedInstance;
-
-- (void) beginPlaying:(NSString *)spotifyUri
-       andSoundVolume:(NSInteger)soundVolume
-     andSoundVeloctiy:(NSInteger)soundVelocity;
--(NSString *)templateScript;
-
-- (bool) validateUri:(NSString *)spotifyUri;
++ (bool) validateUri:(NSString *)spotifyUri;
++ (void) beginPlaying:(NSString *)spotifyUri andSoundVolume:(NSInteger)soundVolume andSoundVeloctiy:(NSInteger)soundVelocity;
++ (NSString *) templateScript;
 
 @end

@@ -1,3 +1,8 @@
+//
+//  Alarmify
+//  Licensed under the Mozilla Public License 2.0
+//
+
 #import "PanelController.h"
 #import "BackgroundView.h"
 #import "StatusItemView.h"
@@ -191,6 +196,9 @@ alarmButton, datePicker, weekdaysButton, weekendsButton, additionalMenu, wakeupT
     [NSAnimationContext endGrouping];
 }
 
+/**
+ * Close the panel
+ */
 - (void)closePanel
 {
     [NSAnimationContext beginGrouping];
@@ -205,6 +213,9 @@ alarmButton, datePicker, weekdaysButton, weekendsButton, additionalMenu, wakeupT
 
 #pragma mark - Alarm logic
 
+/**
+ * Load the alarm configuration and update the GUI
+ */
 - (void) loadAlarmConfiguration
 {
     // Set default states
@@ -221,12 +232,14 @@ alarmButton, datePicker, weekdaysButton, weekendsButton, additionalMenu, wakeupT
     [self.weekendsButton setEnabled:!alarmOn];
 }
 
-
+/**
+ * Install the alarm
+ */
 - (void) installAlarm
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *spotifyUri = [defaults stringForKey:@"spotifyUri"] ?: DEFAULT_SPOTIFY_URI;
-    if (![[SpotifyAutoplayer sharedInstance] validateUri:spotifyUri])
+    if (![SpotifyAutoplayer validateUri:spotifyUri])
     {
         NSLog(@"Invalid Spotify URI. Ensure Alarmify is correctly configured.");
         [self.alarmButton setState:false];
@@ -261,10 +274,8 @@ alarmButton, datePicker, weekdaysButton, weekendsButton, additionalMenu, wakeupT
     NSString *schedulerTiming = [NSString stringWithFormat:@"%@:%@:00", hours, minutes];
     
     // Execute shell cmd to schedule macOS to automatically boot
-    NSArray* result = [Utilities runSystemCommand:[NSString stringWithFormat:@"pmset repeat cancel; pmset repeat wakeorpoweron %@ %@",
-                                                   schedulerDays,
-                                                   schedulerTiming]
-                                   isSudoRequired:true];
+    NSString *command = [NSString stringWithFormat:@"pmset repeat cancel; pmset repeat wakeorpoweron %@ %@", schedulerDays, schedulerTiming];
+    NSArray* result = [Utilities runSystemCommand:command isSudoRequired:true];
     
     if (![[result objectAtIndex:0] boolValue])
     {
@@ -289,6 +300,9 @@ alarmButton, datePicker, weekdaysButton, weekendsButton, additionalMenu, wakeupT
     [self.delegate refreshSettings];
 }
 
+/**
+  Receive Wakeup Event from macOS
+ */
 -(void) receiveWakeNote:(NSNotification *)notification
 {
     // Reload the NSUserDefaults (incase something has changed) will update the GUI
@@ -315,13 +329,15 @@ alarmButton, datePicker, weekdaysButton, weekendsButton, additionalMenu, wakeupT
         return;
     }
     
-    [[SpotifyAutoplayer sharedInstance]beginPlaying:spotifyUri
-                                     andSoundVolume:soundVolume
-                                   andSoundVeloctiy:soundVelocity];
+    [SpotifyAutoplayer beginPlaying:spotifyUri
+                     andSoundVolume:soundVolume
+                   andSoundVeloctiy:soundVelocity];
 }
 
-
-- (void) uninstallAlarm
+/**
+ * Uninstall the alarm
+ */
+- (void)uninstallAlarm
 {
     // Remove the macOS schedule
     NSArray* result = [Utilities runSystemCommand:@"pmset repeat cancel" isSudoRequired:true];
@@ -345,7 +361,9 @@ alarmButton, datePicker, weekdaysButton, weekendsButton, additionalMenu, wakeupT
     [self.delegate refreshSettings];
 }
 
-
+/**
+ * Action handler when the alarm button is pressed
+ */
 - (IBAction)onAlarmToggled:(NSButton *)button
 {
     if (button.state)
@@ -356,6 +374,9 @@ alarmButton, datePicker, weekdaysButton, weekendsButton, additionalMenu, wakeupT
     [self.delegate panelControllerDidUpdate:self];
 }
 
+/**
+ * Action handler when the week/end buttons are pressed
+ */
 - (IBAction)onWeekdayAndWeekendButtonPressed:(NSButton *) button
 {
     if (button.tag != WEEKDAY_BUTTON_TAG && button.tag != WEEKEND_BUTTON_TAG) return;
@@ -366,6 +387,9 @@ alarmButton, datePicker, weekdaysButton, weekendsButton, additionalMenu, wakeupT
     [prefs synchronize];
 }
 
+/**
+ * Action handler when the date picker changes value
+ */
 - (IBAction)onDatePickerChanged:(NSDatePicker *)aDatePicker
 {
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
@@ -373,22 +397,34 @@ alarmButton, datePicker, weekdaysButton, weekendsButton, additionalMenu, wakeupT
     [prefs synchronize];
 }
 
+/**
+ * Action handler when the additional menu button is pressed
+ */
 - (IBAction)onOpenAdditionalMenu:(NSButton *)button
 {
     NSPoint location = [ self.window convertBaseToScreen:button.frame.origin ];
     [self.additionalMenu popUpMenuPositioningItem:nil atLocation:location inView:nil];
 }
 
+/**
+ * Action handler when the quit application button is pressed
+ */
 - (IBAction)onQuitApplication:(NSMenuItem *)item
 {
     [NSApp performSelector:@selector(terminate:) withObject:nil afterDelay:0.0];
 }
 
+/**
+ * Action handler when the about menu item is pressed
+ */
 - (IBAction)onOpenAboutMenu:(NSMenuItem *)item
 {
     [self.delegate onOpenAboutController];
 }
 
+/**
+ * Action handler when the settings menu item is pressed
+ */
 - (IBAction)onOpenSettingsMenu:(NSMenuItem *)item
 {
     [self.delegate onOpenSettingsController];

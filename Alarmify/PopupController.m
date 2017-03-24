@@ -1,5 +1,4 @@
 //
-//  PopupController.m
 //  Alarmify
 //  Licensed under the Mozilla Public License 2.0
 //

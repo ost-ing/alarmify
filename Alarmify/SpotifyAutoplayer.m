@@ -1,5 +1,4 @@
 //
-//  SpotifyAutoplayer.m
 //  Alarmify
 //  Licensed under the Mozilla Public License 2.0
 //
@@ -8,24 +7,10 @@
 
 @implementation SpotifyAutoplayer
 
-SpotifyAutoplayer *instance = nil;
-
-/**
- * Singleton accessor for the SpotifyAutoplayer class
- */
-+ (SpotifyAutoplayer *) sharedInstance
-{
-    if (instance != nil) {
-        return instance;
-    }
-    instance = [[SpotifyAutoplayer alloc]init];
-    return instance;
-}
-
 /**
  * Returns the apple script needed to automatically launch spotify and play the selected URI
  */
-- (NSString *)templateScript
++ (NSString *)templateScript
 {
     return (
         @"try\n"
@@ -51,7 +36,7 @@ SpotifyAutoplayer *instance = nil;
 /**
  * Validates the Uri that its all good
  */
-- (bool) validateUri:(NSString *)spotifyUri
++ (bool) validateUri:(NSString *)spotifyUri
 {
     if (!spotifyUri.length) return false;
     if (![spotifyUri hasPrefix:@"spotify:"]) return false;
@@ -61,7 +46,7 @@ SpotifyAutoplayer *instance = nil;
 /**
  * Begin playing spotify with the specified URI, volume and sound velocity
  */
-- (void) beginPlaying:(NSString *)spotifyUri
++ (void) beginPlaying:(NSString *)spotifyUri
        andSoundVolume:(NSInteger)soundVolume
      andSoundVeloctiy:(NSInteger)soundVelocity
 {

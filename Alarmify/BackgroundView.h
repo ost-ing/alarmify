@@ -1,3 +1,8 @@
+//
+//  Alarmify
+//  Licensed under the Mozilla Public License 2.0
+//
+
 #define ARROW_WIDTH 12
 #define ARROW_HEIGHT 8
 

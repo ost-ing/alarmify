@@ -1,3 +1,8 @@
+//
+//  Alarmify
+//  Licensed under the Mozilla Public License 2.0
+//
+
 #import "BackgroundView.h"
 
 #define FILL_OPACITY 0.9f

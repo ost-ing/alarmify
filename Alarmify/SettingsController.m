@@ -1,5 +1,4 @@
 //
-//  SettingsController.m
 //  Alarmify
 //  Licensed under the Mozilla Public License 2.0
 //
@@ -11,17 +10,10 @@
 #define SLIDER_VELOCITY_TAG 1
 
 @interface SettingsController ()
-
 @end
 
 @implementation SettingsController
-
-@synthesize spotifyUriTextField;
-@synthesize tabView;
-@synthesize popover;
-@synthesize volumeSlider, velocitySlider;
-@synthesize sourceComboBox;
-@synthesize spotifyTestButton;
+@synthesize spotifyUriTextField, tabView, popover, volumeSlider, velocitySlider, sourceComboBox, spotifyTestButton;
 
 - (void)windowDidLoad
 {
@@ -104,7 +96,7 @@
     NSInteger soundVolume = self.volumeSlider.integerValue ?: 80;
     NSInteger soundVelocity = self.velocitySlider.integerValue ?: 1;
     
-    if (![[SpotifyAutoplayer sharedInstance] validateUri:spotifyUri])
+    if (![SpotifyAutoplayer validateUri:spotifyUri])
     {
         NSLog(@"Invalid Spotify URI. Ensure Alarmify is correctly configured.");
         NSAlert *alert = [[NSAlert alloc] init];
@@ -118,9 +110,9 @@
     
     [self.spotifyTestButton setEnabled:false];
     
-    [[SpotifyAutoplayer sharedInstance]beginPlaying:spotifyUri
-                                     andSoundVolume:soundVolume
-                                   andSoundVeloctiy:soundVelocity];
+    [SpotifyAutoplayer beginPlaying:spotifyUri
+                     andSoundVolume:soundVolume
+                   andSoundVeloctiy:soundVelocity];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 30 * NSEC_PER_SEC),
                    dispatch_get_main_queue(),
