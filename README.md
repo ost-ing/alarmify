@@ -1,4 +1,5 @@
-# Alarmify
+# Alarmify ![Alarmify](https://github.com/osphost/alarmify/blob/develop/Alarmify/Images.xcassets/AppIcon.appiconset/icon_32x32.png)
+
 **The macOS alarm clock**
 
 Wake your computer up to your favourite Spotify, Soundcloud, or iTunes playlist.
