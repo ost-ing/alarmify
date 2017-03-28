@@ -24,7 +24,8 @@
     NSRect itemRect = NSMakeRect(0.0, 0.0, itemWidth, itemHeight);
     self = [super initWithFrame:itemRect];
     
-    if (self != nil) {
+    if (self != nil)
+    {
         _statusItem = statusItem;
         _statusItem.view = self;
     }
@@ -36,7 +37,7 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    if (self.isHighlighted)
+    if (self.isHighlighted || [[[NSUserDefaults standardUserDefaults] stringForKey:@"AppleInterfaceStyle"]  isEqual: @"Dark"])
     {
         self.image = [NSImage imageNamed:[NSString stringWithFormat:@"%@_highlighted", self.currentImagePath]];
     }
@@ -79,7 +80,8 @@
 
 - (void)setImage:(NSImage *)newImage
 {
-    if (_image != newImage) {
+    if (_image != newImage)
+    {
         _image = newImage;
         [self setNeedsDisplay:YES];
     }
@@ -87,7 +89,8 @@
 
 - (void)setAlternateImage:(NSImage *)newImage
 {
-    if (_alternateImage != newImage) {
+    if (_alternateImage != newImage)
+    {
         _alternateImage = newImage;
         if (self.isHighlighted) {
             [self setNeedsDisplay:YES];
