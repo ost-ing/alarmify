@@ -25,10 +25,12 @@ void *kContextActivePanel = &kContextActivePanel;
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (context == kContextActivePanel) {
+    if (context == kContextActivePanel)
+    {
         self.menubarController.hasActiveIcon = self.panelController.hasActivePanel;
     }
-    else {
+    else
+    {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
@@ -61,7 +63,8 @@ void *kContextActivePanel = &kContextActivePanel;
 
 - (PanelController *)panelController
 {
-    if (_panelController == nil) {
+    if (_panelController == nil)
+    {
         _panelController = [[PanelController alloc] initWithDelegate:self];
         [_panelController addObserver:self forKeyPath:@"hasActivePanel" options:0 context:kContextActivePanel];
         [_panelController loadWindow];
@@ -75,20 +78,25 @@ void *kContextActivePanel = &kContextActivePanel;
     return self.menubarController.statusItemView;
 }
 
-- (void) panelControllerDidUpdate:(PanelController *)controller {
-    if (controller.alarmButton.state) {
+- (void) panelControllerDidUpdate:(PanelController *)controller
+{
+    if (controller.alarmButton.state)
+    {
         self.menubarController.statusItemView.currentImagePath = @"bar_spotifyface";
-    } else {
+    }
+    else
+    {
         self.menubarController.statusItemView.currentImagePath = @"bar_clockface";
-
     }
     [self.menubarController.statusItemView updateLayer];
 }
 
 #pragma mark - AboutControllerDelegate
 
-- (void) onOpenAboutController {
-    if (_aboutController == nil){
+- (void) onOpenAboutController
+{
+    if (_aboutController == nil)
+    {
         _aboutController = [[AboutController alloc] initWithWindowNibName:@"About"];
         [_aboutController loadWindow];
     }
@@ -97,8 +105,10 @@ void *kContextActivePanel = &kContextActivePanel;
 
 #pragma mark - SettingsControllerDelegate
 
-- (void) onOpenSettingsController {
-    if (_settingsController == nil){
+- (void) onOpenSettingsController
+{
+    if (_settingsController == nil)
+    {
         _settingsController = [[SettingsController alloc] initWithWindowNibName:@"Settings"];
         [_settingsController loadWindow];
     }
