@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment version="1070" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="PanelController">
+            <connections>
+                <outlet property="additionalMenu" destination="qsT-7h-7iG" id="6uV-Jd-0Vm"/>
+                <outlet property="alarmButton" destination="8Hi-zo-1ye" id="a9x-jA-S7o"/>
+                <outlet property="backgroundView" destination="6" id="20"/>
+                <outlet property="datePicker" destination="9v3-Nz-DYu" id="MtN-7P-y9D"/>
+                <outlet property="wakeupTextField" destination="ueS-Hu-eQS" id="xc4-4G-loi"/>
+                <outlet property="weekdaysButton" destination="fsH-cD-bnV" id="bcW-V4-jbs"/>
+                <outlet property="weekendsButton" destination="3lx-hs-ddX" id="g6k-FO-Gto"/>
+                <outlet property="window" destination="5" id="7"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="none" id="5" customClass="Panel">
+            <windowStyleMask key="styleMask" utility="YES" nonactivatingPanel="YES"/>
+            <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES" ignoresCycle="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="162" y="101" width="280" height="72"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <view key="contentView" misplaced="YES" id="6" customClass="BackgroundView">
+                <rect key="frame" x="0.0" y="0.0" width="280" height="72"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button misplaced="YES" tag="1" id="fsH-cD-bnV">
+                        <rect key="frame" x="169" y="35" width="76" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Weekdays" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="gmZ-XY-3KM">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="onWeekdayAndWeekendButtonPressed:" target="-2" id="FYE-gr-Kr4"/>
+                        </connections>
+                    </button>
+                    <button misplaced="YES" id="8Hi-zo-1ye">
+                        <rect key="frame" x="8" y="27" width="58" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Alarm" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Pxh-dy-ewI">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="onAlarmToggled:" target="-2" id="hQM-8S-MeK"/>
+                        </connections>
+                    </button>
+                    <button misplaced="YES" tag="2" id="3lx-hs-ddX">
+                        <rect key="frame" x="168" y="18" width="77" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Weekends" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="cmt-RE-feI">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="onWeekdayAndWeekendButtonPressed:" target="-2" id="I8i-bA-JRD"/>
+                        </connections>
+                    </button>
+                    <datePicker verticalHuggingPriority="750" misplaced="YES" id="9v3-Nz-DYu">
+                        <rect key="frame" x="70" y="25" width="97" height="27"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="ftE-S3-Cgf">
+                            <font key="font" metaFont="system"/>
+                            <calendarDate key="date" timeIntervalSinceReferenceDate="-595929600" calendarFormat="%Y-%m-%d %H:%M:%S %z">
+                                <!--1982-02-12 08:00:00 -0800-->
+                                <timeZone key="timeZone" name="US/Pacific"/>
+                            </calendarDate>
+                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <datePickerElements key="datePickerElements" hour="YES" minute="YES"/>
+                        </datePickerCell>
+                        <connections>
+                            <action selector="onDatePickerChanged:" target="-2" id="4Ho-Km-57W"/>
+                        </connections>
+                    </datePicker>
+                    <button verticalHuggingPriority="750" misplaced="YES" imageHugsTitle="YES" id="OvR-QK-1sy">
+                        <rect key="frame" x="252" y="28" width="16" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="cog" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="Qt9-YW-MD8">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="onOpenAdditionalMenu:" target="-2" id="e5T-eC-JCd"/>
+                        </connections>
+                    </button>
+                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="NO" id="ueS-Hu-eQS">
+                        <rect key="frame" x="8" y="-1" width="263" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Nine hours and thirty minutes until wakeup" id="vSH-sX-Ai5">
+                            <font key="font" metaFont="system" size="11"/>
+                            <color key="textColor" name="selectedKnobColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="8"/>
+            </connections>
+            <point key="canvasLocation" x="117" y="60"/>
+        </window>
+        <menu id="qsT-7h-7iG">
+            <items>
+                <menuItem title="Settings" id="yre-04-30y">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="onOpenSettingsMenu:" target="-2" id="AVM-Lf-njb"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="About" id="W2R-hD-5nH">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="onOpenAboutMenu:" target="-2" id="1i9-al-Rse"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Quit" id="iLS-D8-WTb">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="onQuitApplication:" target="-2" id="SLq-1R-Rz5"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <connections>
+                <outlet property="delegate" destination="-2" id="U8J-PX-Slx"/>
+            </connections>
+            <point key="canvasLocation" x="311" y="-94"/>
+        </menu>
+    </objects>
+    <resources>
+        <image name="cog" width="512" height="512"/>
+    </resources>
+</document>
