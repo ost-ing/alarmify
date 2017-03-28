@@ -5,6 +5,7 @@
 
 #import "SettingsController.h"
 
+#define SPOTIFY_DEFAULT_URI @"spotify:track:5WvD5cjxtmQz0gclIV81Hc"
 #define SPOTIFY_URI_TEXTFIELD_TAG 0
 #define SLIDER_VOLUME_TAG 0
 #define SLIDER_VELOCITY_TAG 1
@@ -35,7 +36,7 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     bool alarmOn = [defaults boolForKey:@"isAlarmActive"];
-    [self.spotifyUriTextField setStringValue:[defaults stringForKey:@"spotifyUri"] ?: @"spotify:search:genre:jazz"];
+    [self.spotifyUriTextField setStringValue:[defaults stringForKey:@"spotifyUri"] ?: SPOTIFY_DEFAULT_URI];
     [self.volumeSlider setIntegerValue:[defaults integerForKey:@"volumeLevel"] ?: 80];
     [self.velocitySlider setIntegerValue:[defaults integerForKey:@"velocityLevel"] ?: 1];
     [self.sourceComboBox selectItemAtIndex:0];
