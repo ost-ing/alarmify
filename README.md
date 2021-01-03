@@ -12,7 +12,7 @@ Alarmify aims to be a lightweight, low consumption and minimalistic Menubar appl
 
 #### Usage & Requirements
 
-In order to use Alarmify v1.0, you require to have administrator/sudo privileges and the Spotify application installed with a valid Spotify account. Download the Alarmify installer and extract the application and then configure it & enjoy!
+In order to use Alarmify v1.0, you require to have the Spotify application installed with a valid Spotify account. Download the Alarmify installer and extract the application and then configure it & enjoy!
 
 #### Contribute
 
